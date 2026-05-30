@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  :root {
+    --bg-color: #F7F5F0;
+    --card-bg: #FFFFFF;
+    --text-primary: #1A1A1A;
+    --text-secondary: #6B6B6B;
+    --accent: #3D9A50;
+    --border-color: #E8E4DC;
+  }
+
+  .dark {
+    --bg-color: #0F1117;
+    --card-bg: #1A1D26;
+    --text-primary: #F0EDE8;
+    --text-secondary: #8A8A9A;
+    --accent: #4CAF61;
+    --border-color: #2A2D36;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    @apply antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  hr {
+    border-color: var(--border-color);
+    @apply border-t-1 my-6;
+  }
+}
+
+@layer components {
+  /* Editorial-style Button styles */
+  .btn-editorial {
+    @apply px-6 py-3 font-outfit uppercase tracking-wider text-xs border border-current transition-all duration-300 inline-flex items-center justify-center font-medium;
+    border-radius: 0px;
+    background-color: transparent;
+  }
+  
+  .btn-editorial:hover {
+    @apply opacity-90;
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn-editorial-primary {
+    @apply px-6 py-3 font-outfit uppercase tracking-wider text-xs border transition-all duration-300 inline-flex items-center justify-center font-medium text-white;
+    background-color: var(--accent);
+    border-color: var(--accent);
+    border-radius: 0px;
+  }
+
+  .btn-editorial-primary:hover {
+    @apply opacity-90;
+    background-color: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* Section Labels: Small Caps, Letter-Spaced */
+  .section-label {
+    @apply text-xs uppercase tracking-widest font-outfit font-semibold opacity-80;
+    color: var(--text-secondary);
+  }
+
+  /* Text link underline state */
+  .link-editorial {
+    @apply relative py-1 transition-all duration-300;
+  }
+  
+  .link-editorial::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .link-editorial:hover::after {
+    width: 100%;
+  }
+
+  .link-editorial:hover {
+    color: var(--accent);
+  }
+
+  /* Hide default scrollbar for specific elements but keep functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Custom subtle scrollbar for content areas */
+  .custom-scrollbar::-webkit-scrollbar {
+    height: 3px;
+    width: 3px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+  }
+}
+
+/* Photo Hover Zoom Effect */
+.zoom-image-container {
+  overflow: hidden;
+}
+
+.zoom-image {
+  transition: transform 400ms ease;
+}
+
+.zoom-image-container:hover .zoom-image {
+  transform: scale(1.03);
+}
+
+/* Perforated Divider for Receipt */
+.perforated-divider {
+  position: relative;
+  border-top: 1px dashed var(--border-color);
+  height: 1px;
+  margin: 1.5rem 0;
+}
+
+.perforated-divider::before,
+.perforated-divider::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+}
+
+.perforated-divider::before {
+  left: -25px;
+  border-right: 1px solid var(--border-color);
+}
+
+.perforated-divider::after {
+  right: -25px;
+  border-left: 1px solid var(--border-color);
+}
