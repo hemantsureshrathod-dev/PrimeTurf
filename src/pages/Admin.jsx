@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  BarChart3, Settings, Shield, Plus, Trash2, FileText, CheckCircle2, XCircle, 
+import {
+  BarChart3, Settings, Shield, Plus, Trash2, FileText, CheckCircle2, XCircle,
   Tv, Eye, Play, Megaphone, Calendar, HelpCircle, ToggleLeft, ToggleRight, Sparkles, ShieldAlert, Upload, Loader
 } from 'lucide-react';
 import { useApp } from '../AppContext';
@@ -9,24 +9,24 @@ import { supabase } from '../supabaseClient';
 import { TIME_SLOTS } from '../components/SlotGrid';
 
 const Admin = () => {
-  const { 
-    bookings, 
-    pricing, 
-    weekendSurcharge, 
-    pricingLastUpdated, 
-    updatePricing, 
-    turfStatus, 
-    updateTurfStatus, 
-    maintenanceBlocks, 
-    addMaintenanceBlock, 
-    removeMaintenanceBlock, 
-    notifications, 
-    broadcastBanner, 
-    features, 
-    setFeatures, 
-    equipmentList, 
-    setEquipmentList, 
-    galleryPhotos, 
+  const {
+    bookings,
+    pricing,
+    weekendSurcharge,
+    pricingLastUpdated,
+    updatePricing,
+    turfStatus,
+    updateTurfStatus,
+    maintenanceBlocks,
+    addMaintenanceBlock,
+    removeMaintenanceBlock,
+    notifications,
+    broadcastBanner,
+    features,
+    setFeatures,
+    equipmentList,
+    setEquipmentList,
+    galleryPhotos,
     fetchGalleryPhotos,
     fetchBookings,
     fetchNotifications,
@@ -41,7 +41,7 @@ const Admin = () => {
 
   // Stats calculation
   const todayStr = "2026-05-28";
-  
+
   const todayBookings = bookings.filter(b => b.date === todayStr && b.status !== 'CANCELLED');
   const revenueToday = todayBookings.reduce((sum, b) => sum + b.amount, 0);
   const pendingCancellations = bookings.filter(b => b.status === 'CANCEL_PENDING').length;
@@ -160,7 +160,7 @@ const Admin = () => {
         .from('equipment')
         .insert({ name: newEquip.trim() });
       if (error) throw error;
-      
+
       setEquipmentList(prev => [...prev, newEquip.trim()]);
       setNewEquip("");
       alert("Equipment added to database.");
@@ -208,7 +208,7 @@ const Admin = () => {
     setUploadingPhoto(true);
     try {
       const fileName = `${Date.now()}_${file.name}`;
-      
+
       // Upload file to Supabase Storage bucket 'gallery'
       const { data: uploadData, error: uploadError } = await supabase.storage
         .from('gallery')
@@ -309,7 +309,7 @@ const Admin = () => {
 
     try {
       const { data: activeRow } = await supabase.from('turf_status').select('id').limit(1).maybeSingle();
-      
+
       let query;
       if (activeRow) {
         query = supabase.from('turf_status').update({
@@ -321,7 +321,7 @@ const Admin = () => {
           reason: bannerText.trim()
         });
       }
-      
+
       const { error } = await query;
       if (error) throw error;
 
@@ -361,7 +361,7 @@ const Admin = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10 font-outfit">
-      
+
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-prime-lightBorder dark:border-prime-darkBorder pb-6 mb-8">
         <div>
@@ -377,25 +377,25 @@ const Admin = () => {
 
         {/* Tab buttons */}
         <div className="flex flex-wrap gap-2 text-xs uppercase font-bold tracking-widest">
-          <button 
+          <button
             onClick={() => setActiveTab('dashboard')}
             className={`px-4 py-2 border transition-all duration-200 cursor-pointer ${activeTab === 'dashboard' ? 'bg-prime-lightText dark:bg-prime-darkText text-white dark:text-[#0F1117]' : 'bg-transparent border-prime-lightBorder dark:border-prime-darkBorder text-prime-lightTextMuted'}`}
           >
             Dashboard
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('bookings')}
             className={`px-4 py-2 border transition-all duration-200 cursor-pointer ${activeTab === 'bookings' ? 'bg-prime-lightText dark:bg-prime-darkText text-white dark:text-[#0F1117]' : 'bg-transparent border-prime-lightBorder dark:border-prime-darkBorder text-prime-lightTextMuted'}`}
           >
             Bookings
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('pricing')}
             className={`px-4 py-2 border transition-all duration-200 cursor-pointer ${activeTab === 'pricing' ? 'bg-prime-lightText dark:bg-prime-darkText text-white dark:text-[#0F1117]' : 'bg-transparent border-prime-lightBorder dark:border-prime-darkBorder text-prime-lightTextMuted'}`}
           >
             Pricing & Status
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('content')}
             className={`px-4 py-2 border transition-all duration-200 cursor-pointer ${activeTab === 'content' ? 'bg-prime-lightText dark:bg-prime-darkText text-white dark:text-[#0F1117]' : 'bg-transparent border-prime-lightBorder dark:border-prime-darkBorder text-prime-lightTextMuted'}`}
           >
@@ -405,17 +405,17 @@ const Admin = () => {
       </div>
 
       {/* ACTIVE TAB CONTENT */}
-      
+
       {/* 1. DASHBOARD */}
       {activeTab === 'dashboard' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
+
           {/* Main Left: Stats + Today Bookings list */}
           <div className="lg:col-span-2 space-y-8">
-            
+
             {/* Stat Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              
+
               <div className="border border-prime-lightBorder dark:border-prime-darkBorder bg-white dark:bg-[#1A1D26] p-5">
                 <span className="text-[10px] uppercase font-bold tracking-widest text-prime-lightTextMuted dark:text-prime-darkTextMuted">Today's Bookings</span>
                 <h3 className="font-playfair text-3xl font-bold text-prime-lightText dark:text-prime-darkText mt-1.5">
@@ -496,7 +496,7 @@ const Admin = () => {
           <div className="lg:col-span-1 border border-prime-lightBorder dark:border-prime-darkBorder bg-white dark:bg-[#1A1D26] p-6 shadow-sm h-fit">
             <span className="section-label">LIVE SYSTEM FEED</span>
             <h3 className="font-playfair text-xl font-bold text-prime-lightText dark:text-prime-darkText mt-1 mb-6">Activity Notification Feed</h3>
-            
+
             <div className="space-y-4 max-h-[480px] overflow-y-auto pr-1.5 custom-scrollbar font-outfit">
               {notifications.length === 0 ? (
                 <div className="text-center py-6 text-xs text-prime-lightTextMuted dark:text-prime-darkTextMuted">No live logs.</div>
@@ -524,27 +524,27 @@ const Admin = () => {
 
           {/* Filters strip */}
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8 text-xs font-outfit">
-            
+
             {/* Sport select */}
             <div>
               <label className="block text-[10px] uppercase font-bold tracking-widest text-prime-lightTextMuted dark:text-prime-darkTextMuted mb-2">Sport Type</label>
-              <select 
-                value={filterSport} 
+              <select
+                value={filterSport}
                 onChange={(e) => setFilterSport(e.target.value)}
                 className="w-full p-2.5 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText font-medium outline-none focus:border-prime-lightAccent"
               >
                 <option value="All">All Sports</option>
                 <option value="Football">Football</option>
                 <option value="Cricket">Cricket</option>
-                <option value="Badminton">Badminton</option>
+
               </select>
             </div>
 
             {/* Status select */}
             <div>
               <label className="block text-[10px] uppercase font-bold tracking-widest text-prime-lightTextMuted dark:text-prime-darkTextMuted mb-2">Booking Status</label>
-              <select 
-                value={filterStatus} 
+              <select
+                value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
                 className="w-full p-2.5 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText font-medium outline-none focus:border-prime-lightAccent"
               >
@@ -558,8 +558,8 @@ const Admin = () => {
             {/* Date Picker */}
             <div>
               <label className="block text-[10px] uppercase font-bold tracking-widest text-prime-lightTextMuted dark:text-prime-darkTextMuted mb-2">Selected Date</label>
-              <input 
-                type="date" 
+              <input
+                type="date"
                 value={filterDate}
                 onChange={(e) => setFilterDate(e.target.value)}
                 className="w-full p-2.5 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText font-medium outline-none focus:border-prime-lightAccent"
@@ -568,7 +568,7 @@ const Admin = () => {
 
             {/* Reset */}
             <div className="flex items-end">
-              <button 
+              <button
                 onClick={() => { setFilterSport('All'); setFilterStatus('All'); setFilterDate(''); }}
                 className="w-full py-2.5 border border-prime-lightBorder dark:border-prime-darkBorder text-[10px] uppercase tracking-wider font-semibold hover:border-prime-lightTextMuted cursor-pointer"
               >
@@ -611,29 +611,28 @@ const Admin = () => {
                       <td className="p-3 text-right font-bold">₹{b.amount}</td>
                       <td className="p-3 text-right">
                         <div className="flex flex-col items-end gap-1.5">
-                          <span className={`px-2 py-0.5 text-[9px] font-semibold tracking-wider ${
-                            b.status === 'CONFIRMED' ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/20' : 
-                            b.status === 'CANCELLED' ? 'bg-red-50 text-red-700 dark:bg-red-950/20' : 
-                            'bg-amber-50 text-amber-700 dark:bg-amber-950/20'
-                          } border border-current uppercase`}>
+                          <span className={`px-2 py-0.5 text-[9px] font-semibold tracking-wider ${b.status === 'CONFIRMED' ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/20' :
+                            b.status === 'CANCELLED' ? 'bg-red-50 text-red-700 dark:bg-red-950/20' :
+                              'bg-amber-50 text-amber-700 dark:bg-amber-950/20'
+                            } border border-current uppercase`}>
                             {b.status === 'CONFIRMED' ? 'Confirmed' : b.status === 'CANCELLED' ? 'Cancelled' : 'Cancel Requested'}
                           </span>
                         </div>
                       </td>
                       <td className="p-3 text-right">
                         <div className="flex items-center justify-end space-x-2.5">
-                          
+
                           {/* Cancel requests Approve/Reject buttons */}
                           {b.status === 'CANCEL_PENDING' && (
                             <div className="flex space-x-1.5">
-                              <button 
+                              <button
                                 onClick={() => handleApproveCancel(b.id)}
                                 className="p-1 border border-emerald-500 hover:bg-emerald-500 hover:text-white text-emerald-500 transition-colors cursor-pointer"
                                 title="Approve Cancellation"
                               >
                                 <CheckCircle2 className="w-4 h-4" />
                               </button>
-                              <button 
+                              <button
                                 onClick={() => handleRejectCancel(b.id)}
                                 className="p-1 border border-red-500 hover:bg-red-500 hover:text-white text-red-500 transition-colors cursor-pointer"
                                 title="Reject / Keep Booking"
@@ -644,8 +643,8 @@ const Admin = () => {
                           )}
 
                           {/* Print details navigation */}
-                          <Link 
-                            to={`/receipt/${b.id}`} 
+                          <Link
+                            to={`/receipt/${b.id}`}
                             className="p-1.5 border border-prime-lightBorder dark:border-prime-darkBorder hover:border-prime-lightAccent hover:text-prime-lightAccent text-prime-lightTextMuted dark:text-prime-darkTextMuted transition-colors"
                             title="View / Download Receipt"
                           >
@@ -671,7 +670,7 @@ const Admin = () => {
       {/* 3. PRICING & STATUS MANAGER */}
       {activeTab === 'pricing' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
+
           {/* Left Column: Pricing form */}
           <div className="lg:col-span-2 space-y-8">
             <div className="border border-prime-lightBorder dark:border-prime-darkBorder bg-white dark:bg-[#1A1D26] p-6 shadow-sm">
@@ -679,15 +678,15 @@ const Admin = () => {
               <h2 className="font-playfair text-xl font-bold text-prime-lightText dark:text-prime-darkText mt-1 mb-6">Modify Hourly Rates</h2>
 
               <form onSubmit={handleSavePricing} className="space-y-6 text-xs font-outfit">
-                
-                {['Football', 'Cricket', 'Badminton'].map((sport) => (
+
+                {['Football', 'Cricket'].map((sport) => (
                   <div key={sport} className="border-b border-prime-lightBorder/50 dark:border-prime-darkBorder/30 pb-6 last:border-0 last:pb-0">
                     <h4 className="font-playfair text-base font-bold text-prime-lightText dark:text-prime-darkText mb-3">{sport} Rates (₹/hr)</h4>
                     <div className="grid grid-cols-3 gap-4">
                       <div>
                         <label className="block text-[9px] uppercase font-semibold text-prime-lightTextMuted dark:text-prime-darkTextMuted mb-1.5">Morning (6AM - 12PM)</label>
-                        <input 
-                          type="number" 
+                        <input
+                          type="number"
                           value={formPricing[sport]?.morning || 0}
                           onChange={(e) => handlePricingChange(sport, 'morning', e.target.value)}
                           className="w-full p-2 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText outline-none font-bold"
@@ -695,8 +694,8 @@ const Admin = () => {
                       </div>
                       <div>
                         <label className="block text-[9px] uppercase font-semibold text-prime-lightTextMuted dark:text-prime-darkTextMuted mb-1.5">Afternoon (12PM - 5PM)</label>
-                        <input 
-                          type="number" 
+                        <input
+                          type="number"
                           value={formPricing[sport]?.afternoon || 0}
                           onChange={(e) => handlePricingChange(sport, 'afternoon', e.target.value)}
                           className="w-full p-2 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText outline-none font-bold"
@@ -704,8 +703,8 @@ const Admin = () => {
                       </div>
                       <div>
                         <label className="block text-[9px] uppercase font-semibold text-prime-lightTextMuted dark:text-prime-darkTextMuted mb-1.5">Evening (5PM - 11PM)</label>
-                        <input 
-                          type="number" 
+                        <input
+                          type="number"
                           value={formPricing[sport]?.evening || 0}
                           onChange={(e) => handlePricingChange(sport, 'evening', e.target.value)}
                           className="w-full p-2 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText outline-none font-bold"
@@ -722,15 +721,15 @@ const Admin = () => {
                     <p className="text-[10px] text-prime-lightTextMuted">Apply rate scaling modification on Saturday & Sunday slots.</p>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <input 
-                      type="number" 
+                    <input
+                      type="number"
                       value={formSurcharge.rate}
                       onChange={(e) => setFormSurcharge(prev => ({ ...prev, rate: parseInt(e.target.value) || 0 }))}
                       className="w-16 p-2 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText text-center font-bold"
                       placeholder="%"
                     />
                     <span className="font-bold text-prime-lightText dark:text-prime-darkText">%</span>
-                    <button 
+                    <button
                       type="button"
                       onClick={() => setFormSurcharge(prev => ({ ...prev, enabled: !prev.enabled }))}
                       className="text-prime-lightAccent dark:text-prime-darkAccent cursor-pointer"
@@ -744,7 +743,7 @@ const Admin = () => {
                   <span className="text-[10px] text-prime-lightTextMuted dark:text-prime-darkTextMuted italic">
                     Last modified: {pricingLastUpdated}
                   </span>
-                  <button 
+                  <button
                     type="submit"
                     className="px-6 py-2.5 bg-prime-lightAccent text-white dark:bg-prime-darkAccent uppercase font-bold tracking-widest text-[10px] cursor-pointer"
                   >
@@ -763,9 +762,9 @@ const Admin = () => {
               <p className="text-[10px] text-prime-lightTextMuted dark:text-prime-darkTextMuted mt-1">
                 Visualizing user slot billing options (excluding weekend modifiers).
               </p>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                {['Football', 'Cricket', 'Badminton'].map((sport) => (
+                {['Football', 'Cricket'].map((sport) => (
                   <div key={sport} className="border border-prime-lightBorder dark:border-prime-darkBorder/40 bg-white dark:bg-[#1A1D26] p-4 font-outfit">
                     <span className="text-[9px] uppercase tracking-widest font-bold opacity-60 block">{sport} Preview</span>
                     <hr className="my-2 border-prime-lightBorder/40" />
@@ -782,7 +781,7 @@ const Admin = () => {
 
           {/* Right Column: Turf Status Panel & Maintenance Schedule */}
           <div className="lg:col-span-1 space-y-8">
-            
+
             {/* Turf open/close toggle */}
             <div className="border border-prime-lightBorder dark:border-prime-darkBorder bg-white dark:bg-[#1A1D26] p-6 shadow-sm">
               <span className="section-label">OPERATIONS SWITCH</span>
@@ -797,7 +796,7 @@ const Admin = () => {
                       <span className="text-red-500 font-bold">CLOSED</span>
                     )}
                   </div>
-                  <button 
+                  <button
                     onClick={handleToggleTurfStatus}
                     className={`px-4 py-1.5 font-bold uppercase tracking-wider text-[10px] text-white transition-all cursor-pointer ${isTurfOpen ? 'bg-red-600 hover:bg-red-800' : 'bg-prime-lightAccent hover:bg-prime-lightAccent/80'}`}
                   >
@@ -809,8 +808,8 @@ const Admin = () => {
                   <div className="space-y-3.5 border-t border-prime-lightBorder/50 pt-4 animate-fade-in">
                     <div>
                       <label className="block text-[9px] uppercase font-bold tracking-widest text-prime-lightTextMuted mb-1.5">Closure Reason</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={closureReason}
                         onChange={(e) => setClosureReason(e.target.value)}
                         placeholder="e.g. Undergoing pitch maintenance"
@@ -819,15 +818,15 @@ const Admin = () => {
                     </div>
                     <div>
                       <label className="block text-[9px] uppercase font-bold tracking-widest text-prime-lightTextMuted mb-1.5">Expected Reopen Date</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={reopenDate}
                         onChange={(e) => setReopenDate(e.target.value)}
                         placeholder="e.g. May 30, 2026"
                         className="w-full p-2 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText outline-none"
                       />
                     </div>
-                    <button 
+                    <button
                       onClick={() => {
                         updateTurfStatus({ status: 'closed', reason: closureReason, reopenDate });
                         alert("Closure details updated in database!");
@@ -849,8 +848,8 @@ const Admin = () => {
               <form onSubmit={handleAddMaintenance} className="space-y-4 text-xs font-outfit">
                 <div>
                   <label className="block text-[9px] uppercase font-bold tracking-widest text-prime-lightTextMuted mb-1.5">Select Date</label>
-                  <input 
-                    type="date" 
+                  <input
+                    type="date"
                     value={maintDate}
                     onChange={(e) => setMaintDate(e.target.value)}
                     required
@@ -861,8 +860,8 @@ const Admin = () => {
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="block text-[9px] uppercase font-bold tracking-widest text-prime-lightTextMuted mb-1.5">Start Hour (24h)</label>
-                    <select 
-                      value={maintStart} 
+                    <select
+                      value={maintStart}
                       onChange={(e) => setMaintStart(e.target.value)}
                       className="w-full p-2 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText outline-none"
                     >
@@ -873,8 +872,8 @@ const Admin = () => {
                   </div>
                   <div>
                     <label className="block text-[9px] uppercase font-bold tracking-widest text-prime-lightTextMuted mb-1.5">End Hour (24h)</label>
-                    <select 
-                      value={maintEnd} 
+                    <select
+                      value={maintEnd}
                       onChange={(e) => setMaintEnd(e.target.value)}
                       className="w-full p-2 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText outline-none"
                     >
@@ -885,7 +884,7 @@ const Admin = () => {
                   </div>
                 </div>
 
-                <button 
+                <button
                   type="submit"
                   className="w-full py-2.5 bg-prime-lightAccent text-white dark:bg-prime-darkAccent uppercase font-bold tracking-widest text-[10px] cursor-pointer"
                 >
@@ -901,7 +900,7 @@ const Admin = () => {
                     {maintenanceBlocks.map((block, idx) => (
                       <div key={block.id || idx} className="flex justify-between items-center text-[10px] p-2 bg-prime-lightBg dark:bg-prime-darkBg">
                         <span>{block.date} @ {block.startHour}:00 - {block.endHour}:00</span>
-                        <button 
+                        <button
                           onClick={() => handleRemoveMaintenance(idx)}
                           className="text-red-500 hover:text-red-700 cursor-pointer"
                         >
@@ -922,23 +921,23 @@ const Admin = () => {
       {/* 4. CONTENT & BROADCAST BANNER */}
       {activeTab === 'content' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 font-outfit text-xs">
-          
+
           {/* Main Left column: photo upload, turf features, equipment list */}
           <div className="lg:col-span-2 space-y-8">
-            
+
             {/* Features checkboxes */}
             <div className="border border-prime-lightBorder dark:border-prime-darkBorder bg-white dark:bg-[#1A1D26] p-6 shadow-sm">
               <span className="section-label">AMENITIES INDEX</span>
               <h3 className="font-playfair text-xl font-bold text-prime-lightText dark:text-prime-darkText mt-1 mb-6">Turf Features Index</h3>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 {features.map((feature) => (
-                  <div 
-                    key={feature.id} 
+                  <div
+                    key={feature.id}
                     className="flex items-center justify-between p-3 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-[#1E212A]"
                   >
                     <span className="font-semibold text-prime-lightText dark:text-prime-darkText">{feature.name}</span>
-                    <button 
+                    <button
                       onClick={() => handleFeatureToggle(feature.id, feature.enabled)}
                       className="text-prime-lightAccent dark:text-prime-darkAccent cursor-pointer"
                     >
@@ -959,16 +958,16 @@ const Admin = () => {
               <h3 className="font-playfair text-xl font-bold text-prime-lightText dark:text-prime-darkText mt-1 mb-6">Rentable Equipment Inventory</h3>
 
               <form onSubmit={handleAddEquipment} className="flex gap-2 mb-6">
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   value={newEquip}
                   onChange={(e) => setNewEquip(e.target.value)}
                   placeholder="e.g. 🏸 Pro Racquets"
                   required
                   className="flex-grow p-2.5 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText outline-none"
                 />
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className="px-5 bg-prime-lightText dark:bg-prime-darkText text-white dark:text-[#0F1117] font-bold uppercase tracking-wider text-[10px] cursor-pointer"
                 >
                   Add Item
@@ -977,12 +976,12 @@ const Admin = () => {
 
               <div className="flex flex-wrap gap-2.5">
                 {equipmentList.map((item, index) => (
-                  <span 
+                  <span
                     key={item}
                     className="px-3 py-1.5 bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText border border-prime-lightBorder dark:border-prime-darkBorder font-medium flex items-center gap-2"
                   >
                     {item}
-                    <button 
+                    <button
                       onClick={() => handleRemoveEquipment(item)}
                       className="text-prime-lightTextMuted hover:text-red-500 hover:scale-110 transition-colors cursor-pointer"
                     >
@@ -999,8 +998,8 @@ const Admin = () => {
               <h3 className="font-playfair text-xl font-bold text-prime-lightText dark:text-prime-darkText mt-1 mb-6">Editorial Photo Gallery</h3>
 
               {/* Hidden file input */}
-              <input 
-                type="file" 
+              <input
+                type="file"
                 id="photo-upload-input"
                 accept="image/*"
                 onChange={handlePhotoUpload}
@@ -1008,7 +1007,7 @@ const Admin = () => {
               />
 
               {/* Upload click zone */}
-              <label 
+              <label
                 htmlFor="photo-upload-input"
                 className="border-2 border-dashed border-prime-lightBorder dark:border-prime-darkBorder hover:border-prime-lightAccent dark:hover:border-prime-darkAccent py-8 text-center cursor-pointer mb-6 transition-colors duration-200 flex flex-col items-center justify-center"
               >
@@ -1028,7 +1027,7 @@ const Admin = () => {
                 {galleryPhotos.map((photo) => (
                   <div key={photo.id} className="relative aspect-video border border-prime-lightBorder dark:border-prime-darkBorder group overflow-hidden bg-black">
                     <img src={photo.url} alt={photo.caption} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    <button 
+                    <button
                       onClick={() => handleDeletePhoto(photo.id)}
                       className="absolute top-1.5 right-1.5 p-1 bg-red-600 hover:bg-red-800 text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
                     >
@@ -1046,7 +1045,7 @@ const Admin = () => {
 
           {/* Right sidebar Column: Broadcast Banner Tool & About text */}
           <div className="lg:col-span-1 space-y-8">
-            
+
             {/* Broadcast Banner Tool */}
             <div className="border border-prime-lightBorder dark:border-prime-darkBorder bg-white dark:bg-[#1A1D26] p-6 shadow-sm">
               <span className="section-label">EMERGENCY BROADCASTS</span>
@@ -1055,7 +1054,7 @@ const Admin = () => {
               <form onSubmit={handleBannerGoLive} className="space-y-4">
                 <div>
                   <label className="block text-[9px] uppercase font-bold tracking-widest text-prime-lightTextMuted mb-1.5">Banner Announcement Text</label>
-                  <textarea 
+                  <textarea
                     rows="4"
                     value={bannerText}
                     onChange={(e) => setBannerText(e.target.value)}
@@ -1066,15 +1065,15 @@ const Admin = () => {
                 </div>
 
                 <div className="flex gap-2">
-                  <button 
+                  <button
                     type="submit"
                     className="flex-grow py-2 bg-[#F9EB8E] text-[#5C4D1C] hover:bg-[#F3DE66] uppercase font-bold tracking-widest text-[9px] flex items-center justify-center gap-1 border border-[#E9D66E] cursor-pointer"
                   >
                     <Play className="w-3.5 h-3.5 fill-current" /> Go Live PUSH
                   </button>
                   {broadcastBanner.active && (
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       onClick={handleRemoveBanner}
                       className="px-4 py-2 border border-red-300 dark:border-red-900/50 hover:border-red-600 text-red-500 hover:text-red-700 uppercase font-bold tracking-widest text-[9px] cursor-pointer"
                     >
@@ -1098,13 +1097,13 @@ const Admin = () => {
               <h3 className="font-playfair text-xl font-bold text-prime-lightText dark:text-prime-darkText mt-1 mb-6">Boutique Brand Details</h3>
 
               <div className="space-y-4">
-                <textarea 
+                <textarea
                   rows="5"
                   value={formAboutText}
                   onChange={(e) => setFormAboutText(e.target.value)}
                   className="w-full p-2.5 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg text-prime-lightText dark:text-prime-darkText outline-none text-xs leading-relaxed"
                 ></textarea>
-                <button 
+                <button
                   onClick={() => alert("Brand details text saved (persisted mockup).")}
                   className="w-full py-2.5 bg-prime-lightAccent text-white dark:bg-prime-darkAccent uppercase font-bold tracking-widest text-[10px] cursor-pointer"
                 >
