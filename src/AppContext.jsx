@@ -54,8 +54,8 @@ export const AppProvider = ({ children }) => {
   const [features, setFeatures] = useState(DEFAULT_FEATURES);
   const [equipmentList, setEquipmentList] = useState(DEFAULT_EQUIPMENT);
   const [galleryPhotos, setGalleryPhotos] = useState([
-    { id: '1', url: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1200&q=80', caption: 'Football turf under golden lights' },
-    { id: '2', url: 'https://images.unsplash.com/photo-1531415080290-bc98513ff86b?auto=format&fit=crop&w=600&q=80', caption: 'Perfect pitch conditions' },
+    { id: '1', url: 'https://plus.unsplash.com/premium_photo-1664304639545-6732fd0bb315?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb3RiYWxsJTIwbmlnaHQlMjB0dXJmfGVufDB8fDB8fHww', caption: 'Football turf under golden lights' },
+    { id: '2', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSomKP3fHNP5ycRUVUCoA57ic-VCElGR_q7mw&s', caption: 'Perfect pitch conditions' },
   ]);
   const [waitlists, setWaitlists] = useState({});
   const [notifications, setNotifications] = useState([]);

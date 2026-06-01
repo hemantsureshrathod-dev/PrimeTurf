@@ -53,10 +53,10 @@ const Home = () => {
   };
 
   const mockReviews = [
-    { id: 1, name: 'Arjun Mehta', rating: 5, quote: 'The turf is top tier. The floodlights are perfectly positioned — no blindspots. Clean and professional.', date: 'Yesterday' },
-    { id: 2, name: "Rahul D'Souza", rating: 5, quote: 'Booking was seamless. The cricket pitch is well maintained and the net enclosures are perfect. Highly recommend.', date: '2 days ago' },
-    { id: 3, name: 'Kabir Sen', rating: 4, quote: 'Excellent football pitch. Easy parking and minimal booking flow. Re-booking saved me so many clicks.', date: '4 days ago' },
-    { id: 4, name: 'Meera Nair', rating: 5, quote: 'Boutique feel, premium experience. This is not just a casual booking platform — it feels special.', date: 'Last week' },
+    { id: 1, name: 'Kunal Rawool', rating: 5, quote: 'The turf is top tier. The floodlights are perfectly positioned — no blindspots. Clean and professional.', date: 'Yesterday' },
+    { id: 2, name: "Yashwant Rathod", rating: 5, quote: 'Booking was seamless. The cricket pitch is well maintained and the net enclosures are perfect. Highly recommend.', date: '2 days ago' },
+    { id: 3, name: 'Krish Mishra', rating: 4, quote: 'Excellent football pitch. Easy parking and minimal booking flow. Re-booking saved me so many clicks.', date: '4 days ago' },
+    { id: 4, name: 'Swati Rathod', rating: 5, quote: 'Boutique feel, premium experience. This is not just a casual booking platform — it feels special.', date: 'Last week' },
   ];
 
   return (
@@ -65,8 +65,8 @@ const Home = () => {
       {/* 1. Hero Section */}
       <section className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden bg-black flex items-end">
         <img
-          src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1600&q=80"
-          alt="Prime Turf Field"
+          src="http://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDxB07kOu6gQMasBih0kJM-S92h0NvLS3n_A&s"
+          alt="Prime Turo Field"
           className="absolute inset-0 w-full h-full object-cover opacity-80"
           loading="eager"
         />
@@ -74,7 +74,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#F7F5F0] dark:from-[#0F1117] via-black/10 to-transparent" />
 
         <div className="relative max-w-7xl mx-auto px-5 md:px-6 w-full pb-10 md:pb-24 z-10 font-outfit text-white">
-          <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold text-prime-lightAccent dark:text-prime-darkAccent">Boutique Athletics Club · Bangalore</span>
+          <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold text-prime-lightAccent dark:text-prime-darkAccent">Premium Sports Arena · Dombivli</span>
           <h1 className="font-playfair text-4xl md:text-7xl font-bold tracking-tight text-white mt-3 max-w-2xl leading-none">
             Book Your Game<span className="text-prime-lightAccent dark:text-prime-darkAccent">.</span>
           </h1>
@@ -227,15 +227,41 @@ const Home = () => {
               PRIME<span className="text-prime-lightAccent dark:text-prime-darkAccent">.</span>TURF
             </h3>
             <p className="text-xs text-prime-lightTextMuted dark:text-prime-darkTextMuted leading-relaxed max-w-xs">
-              A premium sports booking ground in Bangalore. Football & Cricket on one world-class court.
+              A premium sports booking ground in Dombivli. Football & Cricket on one world-class court.
             </p>
           </div>
           <div className="space-y-3">
             <h4 className="text-[10px] uppercase tracking-widest font-bold text-prime-lightText dark:text-prime-darkText">Contact</h4>
             <ul className="text-xs text-prime-lightTextMuted dark:text-prime-darkTextMuted space-y-2">
-              <li className="flex items-start gap-2"><MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" /> 84 Prime Club Cross, Indiranagar, Bangalore</li>
-              <li className="flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> +91 98845 28100</li>
+              <li className="flex items-start gap-2"><MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" /> Sai Baba Complex, A4, Near Gajanan Chowk, Desale Pada, Dombivli East, Kalyan, Maharashtra 421203</li>
+              <li className="flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> +91 9137381239</li>
             </ul>
+          </div>
+          <div className="space-y-3">
+            <h4 className="text-[10px] uppercase tracking-widest font-bold text-prime-lightText dark:text-prime-darkText">
+              Location
+            </h4>
+
+            <div className="overflow-hidden rounded-xl border border-prime-lightBorder dark:border-prime-darkBorder">
+              <iframe
+                title="Prime Turf Location"
+                src="https://maps.google.com/maps?q=Sai%20Baba%20Complex%20A4%20Near%20Gajanan%20Chowk%20Desale%20Pada%20Dombivli%20East%20Kalyan%20Maharashtra%20421204&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="220"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen
+              />
+            </div>
+
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Sai+Baba+Complex+A4+Near+Gajanan+Chowk+Desale+Pada+Dombivli+East+Kalyan+Maharashtra+421204"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-prime-lightAccent dark:text-prime-darkAccent text-xs"
+            >
+              Open in Google Maps →
+            </a>
           </div>
           <div className="space-y-3">
             <h4 className="text-[10px] uppercase tracking-widest font-bold text-prime-lightText dark:text-prime-darkText">Hours</h4>
@@ -246,7 +272,7 @@ const Home = () => {
           </div>
           <div className="space-y-3">
             <h4 className="text-[10px] uppercase tracking-widest font-bold text-prime-lightText dark:text-prime-darkText">Follow Us</h4>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="inline-block p-2 border border-prime-lightBorder dark:border-prime-darkBorder text-prime-lightTextMuted dark:text-prime-darkTextMuted hover:border-prime-lightAccent dark:hover:border-prime-darkAccent hover:text-prime-lightAccent dark:hover:text-prime-darkAccent transition-all duration-300">
+            <a href="https://instagram.com/prime_turf_pickleball" target="_blank" rel="noreferrer" className="inline-block p-2 border border-prime-lightBorder dark:border-prime-darkBorder text-prime-lightTextMuted dark:text-prime-darkTextMuted hover:border-prime-lightAccent dark:hover:border-prime-darkAccent hover:text-prime-lightAccent dark:hover:text-prime-darkAccent transition-all duration-300">
               <InstagramIcon className="w-4 h-4" />
             </a>
             <p className="text-[9px] text-prime-lightTextMuted dark:text-prime-darkTextMuted uppercase tracking-widest mt-3">© 2026 Prime Turf Arena.</p>
