@@ -65,7 +65,7 @@ const Home = () => {
       {/* 1. Hero Section */}
       <section className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden bg-black flex items-end">
         <img
-          src="/src/assets/main.png"
+          src="/main.png"
           alt="Prime Turo Field"
           className="absolute inset-0 w-full h-full object-cover opacity-80"
           loading="eager"
