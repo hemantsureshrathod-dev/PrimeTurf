@@ -9,6 +9,13 @@ const InstagramIcon = ({ className }) => (
   </svg>
 );
 
+const WhatsAppIcon = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+    <path d="M17 14c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2l-.7.9c-.2.2-.4.3-.7.2a7.7 7.7 0 0 1-2.9-1.8 7.7 7.7 0 0 1-1.8-2.9c-.1-.3 0-.5.2-.7l.9-.7c.3-.2.3-.4.2-.7L8.6 6c-.2-.3-.4-.3-.7-.2-.2.1-.5.3-.6.5l-.2.8c0 .8.3 1.9 1.2 3.1a12.8 12.8 0 0 0 5.4 4.7c.6.2 1.2.2 1.6.2l.8-.2c.5-.1.8-.4.9-.6l.5-.6c.2-.2.2-.5 0-.7z" />
+  </svg>
+);
+
 const Footer = () => {
   return (
     <footer className="border-t border-prime-lightBorder dark:border-prime-darkBorder bg-white dark:bg-[#1A1D26] py-10 md:py-16 transition-colors duration-300">
@@ -70,20 +77,32 @@ const Footer = () => {
           <div>
             <h4 className="text-[10px] uppercase tracking-widest font-bold text-prime-lightText dark:text-prime-darkText mb-2">Hours</h4>
             <ul className="text-xs text-prime-lightTextMuted dark:text-prime-darkTextMuted space-y-2">
-              <li className="flex items-center gap-2"><Clock className="w-3.5 h-3.5" /> Everyday: 6 AM – 11 PM</li>
+              <li className="flex items-center gap-2"><Clock className="w-3.5 h-3.5" /> Everyday: Open 24 Hours</li>
               <li className="font-semibold text-prime-lightAccent dark:text-prime-darkAccent text-[9px] uppercase tracking-wider">Booking opens 7 days in advance</li>
             </ul>
           </div>
           <div className="pt-2">
             <h4 className="text-[10px] uppercase tracking-widest font-bold text-prime-lightText dark:text-prime-darkText mb-2">Follow Us</h4>
-            <a 
-              href="https://instagram.com/tanush_sports_club" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="inline-block p-2 border border-prime-lightBorder dark:border-prime-darkBorder text-prime-lightTextMuted dark:text-prime-darkTextMuted hover:border-prime-lightAccent dark:hover:border-prime-darkAccent hover:text-prime-lightAccent dark:hover:text-prime-darkAccent transition-all duration-300"
-            >
-              <InstagramIcon className="w-4 h-4" />
-            </a>
+            <div className="flex items-center gap-2">
+              <a 
+                href="https://instagram.com/tanush_sports_club" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-block p-2 border border-prime-lightBorder dark:border-prime-darkBorder text-prime-lightTextMuted dark:text-prime-darkTextMuted hover:border-prime-lightAccent dark:hover:border-prime-darkAccent hover:text-prime-lightAccent dark:hover:text-prime-darkAccent transition-all duration-300"
+              >
+                <InstagramIcon className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://chat.whatsapp.com/GS3z7pNRksv1az6VFMYg9P" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Join our WhatsApp Community"
+                title="Join our WhatsApp Community"
+                className="inline-block p-2 border border-prime-lightBorder dark:border-prime-darkBorder text-prime-lightTextMuted dark:text-prime-darkTextMuted hover:border-[#25D366] dark:hover:border-[#25D366] hover:text-[#25D366] dark:hover:text-[#25D366] hover:scale-110 transition-all duration-300"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+              </a>
+            </div>
             <p className="text-[9px] text-prime-lightTextMuted dark:text-prime-darkTextMuted uppercase tracking-widest mt-4">
               © 2026 Tanush Sports Club.
             </p>

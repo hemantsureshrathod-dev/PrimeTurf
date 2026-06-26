@@ -43,8 +43,14 @@ export const SportIcon = ({ sport, className = "w-4 h-4" }) => {
   return null;
 };
 
-// Generate list of 17 hourly slots from 6AM to 11PM
+// Generate list of 24 hourly slots for 24-hour operations
 export const TIME_SLOTS = [
+  "12:00 AM - 01:00 AM",
+  "01:00 AM - 02:00 AM",
+  "02:00 AM - 03:00 AM",
+  "03:00 AM - 04:00 AM",
+  "04:00 AM - 05:00 AM",
+  "05:00 AM - 06:00 AM",
   "06:00 AM - 07:00 AM",
   "07:00 AM - 08:00 AM",
   "08:00 AM - 09:00 AM",
@@ -61,11 +67,24 @@ export const TIME_SLOTS = [
   "07:00 PM - 08:00 PM",
   "08:00 PM - 09:00 PM",
   "09:00 PM - 10:00 PM",
-  "10:00 PM - 11:00 PM"
+  "10:00 PM - 11:00 PM",
+  "11:00 PM - 12:00 AM"
 ];
 
-// Generate list of 34 half-hour slots for Pool from 6AM to 11PM
+// Generate list of 48 half-hour slots for Pool for 24-hour operations
 export const POOL_TIME_SLOTS = [
+  "12:00 AM - 12:30 AM",
+  "12:30 AM - 01:00 AM",
+  "01:00 AM - 01:30 AM",
+  "01:30 AM - 02:00 AM",
+  "02:00 AM - 02:30 AM",
+  "02:30 AM - 03:00 AM",
+  "03:00 AM - 03:30 AM",
+  "03:30 AM - 04:00 AM",
+  "04:00 AM - 04:30 AM",
+  "04:30 AM - 05:00 AM",
+  "05:00 AM - 05:30 AM",
+  "05:30 AM - 06:00 AM",
   "06:00 AM - 06:30 AM",
   "06:30 AM - 07:00 AM",
   "07:00 AM - 07:30 AM",
@@ -99,7 +118,9 @@ export const POOL_TIME_SLOTS = [
   "09:00 PM - 09:30 PM",
   "09:30 PM - 10:00 PM",
   "10:00 PM - 10:30 PM",
-  "10:30 PM - 11:00 PM"
+  "10:30 PM - 11:00 PM",
+  "11:00 PM - 11:30 PM",
+  "11:30 PM - 12:00 AM"
 ];
 
 export const POOL_TABLES = [
