@@ -31,7 +31,7 @@ const Login = () => {
         await signIn(form.email, form.password);
       } else {
         await signUp(form.email, form.password, form.name, form.phone);
-        alert("Account created successfully! Welcome to Prime Turf.");
+        alert("Account created successfully! Welcome to Tanush Sports Club.");
       }
       navigate('/');
     } catch (err) {
@@ -64,7 +64,7 @@ const Login = () => {
             {mode === 'login' ? 'Sign In' : 'Register'}
           </h2>
           <p className="text-[10px] text-prime-lightTextMuted dark:text-prime-darkTextMuted uppercase tracking-widest mt-1">
-            Prime Turf Booking Access
+            Tanush Sports Club Booking Access
           </p>
         </div>
 

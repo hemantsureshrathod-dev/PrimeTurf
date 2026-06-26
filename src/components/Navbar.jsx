@@ -42,7 +42,7 @@ const Navbar = () => {
         
         {/* Brand Logo */}
         <Link to="/" className="font-playfair font-bold text-lg md:text-xl tracking-[0.2em] text-prime-lightText dark:text-prime-darkText uppercase select-none">
-          PRIME<span className="text-prime-lightAccent dark:text-prime-darkAccent">.</span>TURF
+          TANUSH<span className="text-prime-lightAccent dark:text-prime-darkAccent">.</span>SPORTS
         </Link>
 
         {/* Center Links */}
@@ -55,12 +55,12 @@ const Navbar = () => {
           >
             Facilities
           </button>
-          <button 
-            onClick={() => handleNavClick('gallery')}
-            className="text-prime-lightTextMuted dark:text-prime-darkTextMuted hover:text-prime-lightText dark:hover:text-prime-darkText transition-all duration-200 link-editorial cursor-pointer"
+          <Link 
+            to="/gallery"
+            className={`${activeLinkClass('/gallery')} transition-all duration-200`}
           >
             Gallery
-          </button>
+          </Link>
           <button 
             onClick={() => handleNavClick('reviews')}
             className="text-prime-lightTextMuted dark:text-prime-darkTextMuted hover:text-prime-lightText dark:hover:text-prime-darkText transition-all duration-200 link-editorial cursor-pointer"

@@ -58,7 +58,7 @@ const AdminLogin = () => {
             <label className="block text-[9px] uppercase font-bold tracking-wider text-prime-lightTextMuted dark:text-prime-darkTextMuted">Email Address</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center opacity-50"><Mail className="w-4 h-4" /></span>
-              <input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="admin@primeturf.com"
+              <input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="admin@tanushsports.com"
                 className="w-full pl-10 pr-4 py-2.5 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg/30 text-prime-lightText dark:text-prime-darkText text-xs outline-none focus:border-red-500 transition-colors" />
             </div>
           </div>

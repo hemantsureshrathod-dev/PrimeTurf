@@ -31,9 +31,11 @@ const BookingSummary = ({ selectedSport, selectedDate, selectedSlots, onRemoveSl
   const slotsDetails = selectedSlots.map(slot => {
     const tier = getSlotTier(slot);
     const baseRate = pricing[selectedSport]?.[tier] || 0;
+    // Pool slots are 30 minutes, so they cost half the hourly rate
+    const finalBaseRate = selectedSport === 'Pool' ? Math.round(baseRate / 2) : baseRate;
     const finalPrice = isWeekend && weekendSurcharge?.enabled
-      ? Math.round(baseRate * (1 + weekendSurcharge.rate / 100))
-      : baseRate;
+      ? Math.round(finalBaseRate * (1 + weekendSurcharge.rate / 100))
+      : finalBaseRate;
     return { slot, price: finalPrice };
   });
 
@@ -108,7 +110,9 @@ const BookingSummary = ({ selectedSport, selectedDate, selectedSlots, onRemoveSl
         </div>
         {slotsDetails.map(item => (
           <div key={item.slot} className="flex justify-between items-center text-xs py-1 border-b border-dashed border-prime-lightBorder/50 dark:border-prime-darkBorder/30">
-            <span className="text-prime-lightText dark:text-prime-darkText font-medium">{item.slot.split(' - ')[0]}</span>
+            <span className="text-prime-lightText dark:text-prime-darkText font-medium">
+              {item.slot.startsWith('Table') ? item.slot : item.slot.split(' - ')[0]}
+            </span>
             <div className="flex items-center space-x-3">
               <span className="font-semibold text-prime-lightText dark:text-prime-darkText">₹{item.price}</span>
               <button onClick={() => onRemoveSlot(item.slot)} className="text-prime-lightTextMuted hover:text-red-500 dark:text-prime-darkTextMuted dark:hover:text-red-400 p-0.5">×</button>
@@ -163,7 +167,7 @@ const BookingSummary = ({ selectedSport, selectedDate, selectedSlots, onRemoveSl
                 <div className="flex justify-center mb-4">
                   <div className="bg-white p-2 rounded border border-gray-200 inline-block">
                     <img
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(`upi://pay?pa=anitasrathod08@okhdfcbank&pn=Prime%20Turf&am=${finalTotal}&cu=INR`)}`}
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(`upi://pay?pa=anitasrathod08@okhdfcbank&pn=Tanush%20Sports%20Club&am=${finalTotal}&cu=INR`)}`}
                       alt="UPI QR"
                       className="w-44 h-44"
                     />

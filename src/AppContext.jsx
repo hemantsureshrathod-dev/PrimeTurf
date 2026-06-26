@@ -8,6 +8,7 @@ const AppContext = createContext();
 const DEFAULT_PRICING = {
   Football: { morning: 800, afternoon: 1000, evening: 1300 },
   Cricket: { morning: 1000, afternoon: 1200, evening: 1500 },
+  Pool: { morning: 200, afternoon: 250, evening: 300 },
 };
 
 const DEFAULT_FEATURES = [
@@ -54,8 +55,14 @@ export const AppProvider = ({ children }) => {
   const [features, setFeatures] = useState(DEFAULT_FEATURES);
   const [equipmentList, setEquipmentList] = useState(DEFAULT_EQUIPMENT);
   const [galleryPhotos, setGalleryPhotos] = useState([
-    { id: '1', url: 'https://plus.unsplash.com/premium_photo-1664304639545-6732fd0bb315?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb3RiYWxsJTIwbmlnaHQlMjB0dXJmfGVufDB8fDB8fHww', caption: 'Football turf under golden lights' },
-    { id: '2', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSomKP3fHNP5ycRUVUCoA57ic-VCElGR_q7mw&s', caption: 'Perfect pitch conditions' },
+    { id: '1', url: '/gallery1.jpg', caption: 'Tanush Sports Club turf under golden floodlights' },
+    { id: '2', url: '/gallery2.jpg', caption: 'Football matches on premium turf' },
+    { id: '3', url: '/gallery3.jpg', caption: 'Premium pool tables and equipment' },
+    { id: '4', url: '/gallery4.jpg', caption: 'Football practice and league games' },
+    { id: '5', url: '/gallery5.jpg', caption: 'Tournament cricket training nets' },
+    { id: '6', url: 'https://images.unsplash.com/photo-1560185127-6a2806647f81?w=800&auto=format&fit=crop&q=80', caption: 'Sports lounge and social area' },
+    { id: '7', url: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&auto=format&fit=crop&q=80', caption: 'Athletic training amenities' },
+    { id: '8', url: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=800&auto=format&fit=crop&q=80', caption: 'Modern sports court design' },
   ]);
   const [waitlists, setWaitlists] = useState({});
   const [notifications, setNotifications] = useState([]);
@@ -71,7 +78,7 @@ export const AppProvider = ({ children }) => {
         let surcharge = { enabled: false, rate: 0 };
         data.forEach(row => {
           // Skip Badminton rows that may exist in DB
-          if (!COURT_SPORTS.includes(row.sport)) return;
+          if (!['Football', 'Cricket', 'Pool'].includes(row.sport)) return;
           pricingObj[row.sport] = {
             morning: Number(row.morning_rate),
             afternoon: Number(row.afternoon_rate),
@@ -297,7 +304,7 @@ export const AppProvider = ({ children }) => {
 
   const updatePricing = async (newPricing, withWeekendSurcharge) => {
     try {
-      for (const sport of COURT_SPORTS) {
+      for (const sport of ['Football', 'Cricket', 'Pool']) {
         const r = newPricing[sport];
         await supabase.from('pricing').update({
           morning_rate: r.morning, afternoon_rate: r.afternoon, evening_rate: r.evening,

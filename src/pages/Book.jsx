@@ -22,7 +22,7 @@ const generateWeekDays = () => {
   return days;
 };
 
-const SPORTS = ['Football', 'Cricket'];
+const SPORTS = ['Football', 'Cricket', 'Pool'];
 
 const Book = () => {
   const { pricing, userLoyalty } = useApp();
@@ -69,16 +69,7 @@ const Book = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-10 font-outfit">
 
-      {/* Weather strip */}
-      <div className="bg-[#EBF5EC] text-[#245E32] dark:bg-[#122416] dark:text-[#A7DBB2] border border-[#CDE6D2] dark:border-[#224429] py-3 px-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs rounded-sm">
-        <div className="flex items-center gap-2">
-          <CloudSun className="w-4 h-4 opacity-85 flex-shrink-0" />
-          <span>Today in <strong>Bangalore</strong>: 28°C, Partly Cloudy — Good conditions.</span>
-        </div>
-        <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[10px] bg-[#D4EDD8] dark:bg-[#1C3622] px-2 py-0.5 self-start sm:self-auto">
-          ✓ Playable
-        </div>
-      </div>
+
 
       <span className="section-label">Book a Slot</span>
       <h1 className="font-playfair text-3xl md:text-5xl font-bold text-prime-lightText dark:text-prime-darkText mt-2 mb-6 md:mb-8">
@@ -129,9 +120,9 @@ const Book = () => {
         <div className="bg-white dark:bg-[#1A1D26] border border-prime-lightBorder dark:border-prime-darkBorder px-3 py-2 flex items-center gap-2 text-[11px] font-outfit text-prime-lightText dark:text-prime-darkText">
           <Info className="w-3.5 h-3.5 text-prime-lightAccent dark:text-prime-darkAccent flex-shrink-0" />
           <div className="flex flex-wrap gap-x-3 gap-y-0.5">
-            <span>Morning: <strong>₹{pricing[selectedSport]?.morning}/hr</strong></span>
-            <span>Afternoon: <strong>₹{pricing[selectedSport]?.afternoon}/hr</strong></span>
-            <span>Evening: <strong>₹{pricing[selectedSport]?.evening}/hr</strong></span>
+            <span>Morning: <strong>₹{selectedSport === 'Pool' ? Math.round(pricing[selectedSport]?.morning / 2) : pricing[selectedSport]?.morning}/{selectedSport === 'Pool' ? '30m' : 'hr'}</strong></span>
+            <span>Afternoon: <strong>₹{selectedSport === 'Pool' ? Math.round(pricing[selectedSport]?.afternoon / 2) : pricing[selectedSport]?.afternoon}/{selectedSport === 'Pool' ? '30m' : 'hr'}</strong></span>
+            <span>Evening: <strong>₹{selectedSport === 'Pool' ? Math.round(pricing[selectedSport]?.evening / 2) : pricing[selectedSport]?.evening}/{selectedSport === 'Pool' ? '30m' : 'hr'}</strong></span>
           </div>
         </div>
       </div>

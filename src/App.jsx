@@ -9,6 +9,7 @@ import Receipt from './pages/Receipt';
 import Admin from './pages/Admin';
 import { useApp } from './AppContext';
 import Login from './pages/Login';
+import Gallery from './pages/Gallery';
 
 // Inside your <Routes>:
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/my-bookings" element={<MyBookings />} />
             <Route path="/receipt/:id" element={<Receipt />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/gallery" element={<Gallery />} />
           </Routes>
         </main>
       </div>

@@ -149,7 +149,7 @@ const Admin = () => {
 
   // 4. Content Manager States
   const [newEquip, setNewEquip] = useState("");
-  const [formAboutText, setFormAboutText] = useState("Prime Turf is the city's premier sports club venue. Built in 2024, our pitches offer tournament-grade playing surfaces for soccer, cricket, and badminton enthusiasts alike.");
+  const [formAboutText, setFormAboutText] = useState("Tanush Sports Club is the city's premier sports club venue. Built in 2024, our pitches offer tournament-grade playing surfaces for soccer, cricket, and badminton enthusiasts alike.");
 
   const handleAddEquipment = async (e) => {
     e.preventDefault();

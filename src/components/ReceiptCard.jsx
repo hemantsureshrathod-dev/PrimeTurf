@@ -58,7 +58,7 @@ const ReceiptCard = ({ booking }) => {
 
         {/* Top */}
         <div className="flex flex-col items-center text-center pb-5 border-b border-prime-lightBorder/50 dark:border-prime-darkBorder/30">
-          <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-prime-lightAccent dark:text-prime-darkAccent">Prime Turf Booking Pass</span>
+          <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-prime-lightAccent dark:text-prime-darkAccent">Tanush Sports Club Pass</span>
           <h2 className="font-playfair text-3xl font-bold tracking-tight text-prime-lightText dark:text-prime-darkText mt-1.5">{booking.sport}</h2>
           <div className="mt-3">{getStatusBadge()}</div>
         </div>
@@ -71,7 +71,7 @@ const ReceiptCard = ({ booking }) => {
             { label: 'Date', icon: <Calendar className="w-3.5 h-3.5" />, value: booking.date },
             { label: 'Time Slot(s)', icon: <Clock className="w-3.5 h-3.5" />, value: <div className="text-right">{booking.slots?.map(s => <div key={s} className="font-semibold">{s}</div>)}</div> },
             { label: 'Player', icon: <Award className="w-3.5 h-3.5" />, value: booking.user },
-            { label: 'Venue', icon: <MapPin className="w-3.5 h-3.5" />, value: 'Prime Turf Arena, Bangalore' },
+            { label: 'Venue', icon: <MapPin className="w-3.5 h-3.5" />, value: 'Tanush Sports Club, Sawantwadi' },
           ].map(({ label, icon, value }) => (
             <div key={label} className="grid grid-cols-2 py-1 border-b border-prime-lightBorder/30 dark:border-prime-darkBorder/10 items-start">
               <span className="text-prime-lightTextMuted dark:text-prime-darkTextMuted uppercase tracking-wider text-[10px] flex items-center gap-1">{icon}{label}</span>

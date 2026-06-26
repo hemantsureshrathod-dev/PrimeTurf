@@ -3,15 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { ArrowRight, Star, Shield, HelpCircle, MapPin, Phone, Clock } from 'lucide-react';
 import { useApp } from '../AppContext';
 import { useAuth } from '../AuthContext';
-import PhotoGallery from '../components/PhotoGallery';
-
-const InstagramIcon = ({ className }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-  </svg>
-);
+import Footer from '../components/Footer';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -22,15 +14,18 @@ const Home = () => {
   const sportCategories = [
     {
       name: 'Football',
-      // Reliable Unsplash football image
       url: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=800&q=80',
       tagline: 'Premium grass, 7-a-side dimensions',
     },
     {
       name: 'Cricket',
-      // Reliable Unsplash cricket image — using a confirmed working photo
       url: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
       tagline: 'Clay pitches with net enclosures',
+    },
+    {
+      name: 'Pool',
+      url: '/gallery3.jpg',
+      tagline: 'Premium slate pool tables & accessories',
     },
   ];
 
@@ -74,7 +69,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#F7F5F0] dark:from-[#0F1117] via-black/10 to-transparent" />
 
         <div className="relative max-w-7xl mx-auto px-5 md:px-6 w-full pb-10 md:pb-24 z-10 font-outfit text-white">
-          <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold text-prime-lightAccent dark:text-prime-darkAccent">Premium Sports Arena · Dombivli</span>
+          <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold text-prime-lightAccent dark:text-prime-darkAccent">Premium Sports Arena · Sawantwadi</span>
           <h1 className="font-playfair text-4xl md:text-7xl font-bold tracking-tight text-white mt-3 max-w-2xl leading-none">
             Book Your Game<span className="text-prime-lightAccent dark:text-prime-darkAccent">.</span>
           </h1>
@@ -105,7 +100,7 @@ const Home = () => {
         <span className="section-label">Book a Slot</span>
         <h2 className="font-playfair text-2xl md:text-3xl font-bold text-prime-lightText dark:text-prime-darkText mt-2 mb-8 md:mb-10">Select Arena Category</h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-8">
           {sportCategories.map((sport) => (
             <div
               key={sport.name}
@@ -167,33 +162,9 @@ const Home = () => {
 
       <div className="max-w-7xl mx-auto px-5 md:px-6"><hr /></div>
 
-      {/* 4. Equipment */}
-      <section className="max-w-7xl mx-auto px-5 md:px-6 py-10 md:py-16 font-outfit text-center bg-white dark:bg-[#1A1D26] border border-prime-lightBorder dark:border-prime-darkBorder my-6 md:my-8">
-        <span className="section-label">Equipment Rentals</span>
-        <h3 className="font-playfair text-xl font-bold text-prime-lightText dark:text-prime-darkText mt-1.5 mb-6">Everything You Need</h3>
-        <div className="flex flex-wrap justify-center items-center gap-2 md:gap-3 text-xs md:text-sm font-medium text-prime-lightText dark:text-prime-darkText max-w-2xl mx-auto">
-          {equipmentList.map((item, idx) => (
-            <React.Fragment key={item}>
-              <span className="px-3 py-2 border border-prime-lightBorder dark:border-prime-darkBorder bg-prime-lightBg dark:bg-prime-darkBg font-medium select-none">{item}</span>
-              {idx < equipmentList.length - 1 && <span className="text-prime-lightAccent dark:text-prime-darkAccent font-bold">·</span>}
-            </React.Fragment>
-          ))}
-        </div>
-        <p className="text-[10px] text-prime-lightTextMuted dark:text-prime-darkTextMuted mt-4 uppercase tracking-widest font-semibold">
-          * Included free on Gold loyalty tier accounts
-        </p>
-      </section>
 
-      <div className="max-w-7xl mx-auto px-5 md:px-6"><hr /></div>
 
-      {/* 5. Gallery */}
-      <section id="gallery" className="max-w-7xl mx-auto px-5 md:px-6 py-12 md:py-20 font-outfit">
-        <span className="section-label">Gallery</span>
-        <h2 className="font-playfair text-2xl md:text-3xl font-bold text-prime-lightText dark:text-prime-darkText mt-2 mb-8 md:mb-10">Boutique Viewports</h2>
-        <PhotoGallery />
-      </section>
 
-      <div className="max-w-7xl mx-auto px-5 md:px-6"><hr /></div>
 
       {/* 6. Reviews */}
       <section id="reviews" className="max-w-7xl mx-auto px-5 md:px-6 py-12 md:py-20 font-outfit">
@@ -219,66 +190,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 7. Footer */}
-      <footer className="border-t border-prime-lightBorder dark:border-prime-darkBorder bg-white dark:bg-[#1A1D26] py-10 md:py-16 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-5 md:px-6 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 font-outfit">
-          <div className="col-span-2 md:col-span-1 space-y-4">
-            <h3 className="font-playfair font-bold text-lg tracking-[0.2em] text-prime-lightText dark:text-prime-darkText uppercase">
-              PRIME<span className="text-prime-lightAccent dark:text-prime-darkAccent">.</span>TURF
-            </h3>
-            <p className="text-xs text-prime-lightTextMuted dark:text-prime-darkTextMuted leading-relaxed max-w-xs">
-              A premium sports booking ground in Dombivli. Football & Cricket on one world-class court.
-            </p>
-          </div>
-          <div className="space-y-3">
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-prime-lightText dark:text-prime-darkText">Contact</h4>
-            <ul className="text-xs text-prime-lightTextMuted dark:text-prime-darkTextMuted space-y-2">
-              <li className="flex items-start gap-2"><MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" /> Sai Baba Complex, A4, Near Gajanan Chowk, Desale Pada, Dombivli East, Kalyan, Maharashtra 421203</li>
-              <li className="flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> +91 9137381239</li>
-            </ul>
-          </div>
-          <div className="space-y-3">
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-prime-lightText dark:text-prime-darkText">
-              Location
-            </h4>
-
-            <div className="overflow-hidden rounded-xl border border-prime-lightBorder dark:border-prime-darkBorder">
-              <iframe
-                title="Prime Turf Location"
-                src="https://maps.google.com/maps?q=Sai%20Baba%20Complex%20A4%20Near%20Gajanan%20Chowk%20Desale%20Pada%20Dombivli%20East%20Kalyan%20Maharashtra%20421204&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="220"
-                style={{ border: 0 }}
-                loading="lazy"
-                allowFullScreen
-              />
-            </div>
-
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Sai+Baba+Complex+A4+Near+Gajanan+Chowk+Desale+Pada+Dombivli+East+Kalyan+Maharashtra+421204"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-prime-lightAccent dark:text-prime-darkAccent text-xs"
-            >
-              Open in Google Maps →
-            </a>
-          </div>
-          <div className="space-y-3">
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-prime-lightText dark:text-prime-darkText">Hours</h4>
-            <ul className="text-xs text-prime-lightTextMuted dark:text-prime-darkTextMuted space-y-2">
-              <li className="flex items-center gap-2"><Clock className="w-3.5 h-3.5" /> Everyday: 6 AM – 11 PM</li>
-              <li className="font-semibold text-prime-lightAccent dark:text-prime-darkAccent text-[9px] uppercase tracking-wider">Booking opens 7 days in advance</li>
-            </ul>
-          </div>
-          <div className="space-y-3">
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-prime-lightText dark:text-prime-darkText">Follow Us</h4>
-            <a href="https://instagram.com/prime_turf_pickleball" target="_blank" rel="noreferrer" className="inline-block p-2 border border-prime-lightBorder dark:border-prime-darkBorder text-prime-lightTextMuted dark:text-prime-darkTextMuted hover:border-prime-lightAccent dark:hover:border-prime-darkAccent hover:text-prime-lightAccent dark:hover:text-prime-darkAccent transition-all duration-300">
-              <InstagramIcon className="w-4 h-4" />
-            </a>
-            <p className="text-[9px] text-prime-lightTextMuted dark:text-prime-darkTextMuted uppercase tracking-widest mt-3">© 2026 Prime Turf Arena.</p>
-          </div>
-        </div>
-      </footer>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
