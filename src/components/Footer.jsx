@@ -23,8 +23,8 @@ const Footer = () => {
         
         {/* Brand */}
         <div className="col-span-2 md:col-span-1 space-y-4">
-          <h3 className="font-playfair font-bold text-lg tracking-[0.2em] text-prime-lightText dark:text-prime-darkText uppercase">
-            TANUSH<span className="text-prime-lightAccent dark:text-prime-darkAccent">.</span>SPORTS
+          <h3 className="font-playfair font-bold text-lg tracking-[0.1em] text-prime-lightText dark:text-prime-darkText uppercase">
+            TANUSH SPORTS CLUB
           </h3>
           <p className="text-xs text-prime-lightTextMuted dark:text-prime-darkTextMuted leading-relaxed max-w-xs">
             A premium sports club in Sawantwadi. Football, Cricket, and Pool on world-class facilities.

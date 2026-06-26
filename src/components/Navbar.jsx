@@ -41,8 +41,8 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
         {/* Brand Logo */}
-        <Link to="/" className="font-playfair font-bold text-lg md:text-xl tracking-[0.2em] text-prime-lightText dark:text-prime-darkText uppercase select-none">
-          TANUSH<span className="text-prime-lightAccent dark:text-prime-darkAccent">.</span>SPORTS
+        <Link to="/" className="font-playfair font-bold text-lg md:text-xl tracking-[0.1em] text-prime-lightText dark:text-prime-darkText uppercase select-none">
+          TANUSH SPORTS CLUB
         </Link>
 
         {/* Center Links */}
